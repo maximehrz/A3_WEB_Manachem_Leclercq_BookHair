@@ -22,3 +22,7 @@ Route::resource('/coiffeur', 'CoiffeurController' );
 Route::resource('/rdv', 'RdvController' );
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
