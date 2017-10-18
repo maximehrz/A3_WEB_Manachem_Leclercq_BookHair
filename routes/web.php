@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/magasin', 'MagasinController' );
+
+Route::resource('/coiffeur', 'CoiffeurController' );
+
+Route::resource('/rdv', 'RdvController' );
+
+
