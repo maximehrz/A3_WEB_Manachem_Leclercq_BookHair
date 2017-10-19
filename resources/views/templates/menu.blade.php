@@ -10,12 +10,14 @@
 </head>
 <body>
 <div id="menu" class="container-fluid">
-    <h1><span class="glyphicon glyphicon-scissors"></span>BookHair</h1>
-    <ul>
-        <li><a href="#" id="liencoif">Vous êtes coiffeur ?</a></li>
-        <li><a href="#">Inscription</a></li>
-        <li><a href="#" class="color">Connexion</a></li>
-    </ul>
+    <h1><a href="/"><span class="glyphicon glyphicon-scissors"></span>BookHair</a></h1>
+    <div id="menudroite">
+        <ul>
+            <li><a href="#" id="liencoif">Vous êtes coiffeur ?</a></li>
+            <li><a id="inscription" href="/register">Inscription</a></li>
+            <li><a href="/login" class="color">Connexion</a></li>
+        </ul>
+    </div>
 </div>
 @yield('content')
 </body>

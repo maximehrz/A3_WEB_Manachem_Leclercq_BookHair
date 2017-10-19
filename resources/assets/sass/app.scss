@@ -14,9 +14,27 @@ body
   font-family: 'Open Sans', sans-serif;
 }
 
-#logo
+a
 {
-  width: 100px;
+  color: #5147FF !important;
+}
+
+a:hover
+{
+  text-decoration: none !important;
+  opacity: 0.7 !important;
+}
+
+.btn-primary
+{
+  background-color: #5147FF;
+  border-color: #473fea;
+}
+
+.btn-primary:hover
+{
+  background-color: #413ac9;
+  border-color: #413ac9;
 }
 
 #menu
@@ -36,20 +54,20 @@ body
   cursor: pointer;
 }
 
-#menu ul
+#menudroite
 {
   display: inline-block;
   float: right;
   margin-top: 25px;
 }
 
-#menu li
+#menudroite li
 {
   display: inline-block;
   margin-left: 50px;
 }
 
-#menu a, #menu a:visited, #menu a:active, #menu a:hover
+#menudroite a, #menudroite a:visited, #menudroite a:active, #menudroite a:hover
 {
   color: #797979;
   font-weight: 300;
@@ -113,11 +131,17 @@ body
   background-color: #fff;
   font-size: 15px;
   width: 60%;
+  border-radius: 4px;
 }
 
 #leformdebg label
 {
   font-weight: 400;
+}
+
+#inscription
+{
+  color: #797979 !important;
 }
 
 #ou input, #quand input, #nom input
@@ -156,4 +180,11 @@ body
   background: #5147FF !important;
   margin: 12px !important;
   height: 48px !important;
+}
+
+// Connexion
+
+label
+{
+  font-weight: 300;
 }
