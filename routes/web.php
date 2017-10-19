@@ -21,6 +21,7 @@ Route::resource('/coiffeur', 'CoiffeurController' );
 
 Route::resource('/rdv', 'RdvController' );
 
+Route::resource('/user', 'UserController' );
 
 
 Auth::routes();
