@@ -23,6 +23,13 @@ Route::resource('/rdv', 'RdvController' );
 
 Route::resource('/user', 'UserController' );
 
+Route::get('/s', 'SearchController@index');
+
+Route::get('/s/all', 'SearchController@showAll');
+
+// Si recherche = vide -> /s/all afficher 5 salons populaires
+
+Route::get('/s/{ville}/{nom}/{date}', 'SearchController@index');
 
 Auth::routes();
 

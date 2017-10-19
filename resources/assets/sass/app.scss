@@ -182,9 +182,48 @@ a:hover
   height: 48px !important;
 }
 
-// Connexion
+// Connexion + Inscription
 
 label
 {
   font-weight: 300;
+}
+
+// Search
+
+.card
+{
+  background-color: #fff;
+  border-radius: 4px;
+  margin: 10px;
+}
+
+.card img
+{
+  width: 100%;
+}
+
+.card h3
+{
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+.card .type
+{
+  color:#979797;
+  margin: 0;
+}
+
+#btVoirFiche
+{
+  height: 170px;
+  position: relative;
+}
+
+#btVoirFiche button
+{
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
 }
