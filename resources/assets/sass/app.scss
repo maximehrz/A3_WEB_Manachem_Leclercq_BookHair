@@ -1,9 +1,159 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Roboto:300,400,500,700,900');
 
 // Variables
 @import "variables";
 
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Landing page
+body
+{
+  font-family: 'Open Sans', sans-serif;
+}
+
+#logo
+{
+  width: 100px;
+}
+
+#menu
+{
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 15px;
+  background-color: #fff;
+}
+
+#menu h1
+{
+  color: #5147FF;
+  font-weight: 700;
+  display: inline-block;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+#menu ul
+{
+  display: inline-block;
+  float: right;
+  margin-top: 25px;
+}
+
+#menu li
+{
+  display: inline-block;
+  margin-left: 50px;
+}
+
+#menu a, #menu a:visited, #menu a:active, #menu a:hover
+{
+  color: #797979;
+  font-weight: 300;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 0.5s ease-in-out;
+}
+
+#liencoif
+{
+  color: #5147FF !important;
+  border: 1px solid #5147FF;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.color
+{
+  color: #5147FF !important;
+}
+
+// Content landing page
+
+#contentlanding
+{
+  position: relative;
+}
+
+#meufdufond
+{
+  width: 100vw;
+  transition: 0.5s ease-in-out;
+}
+
+#meufdufond:hover
+{
+  filter: blur(5px);
+}
+
+#slogan
+{
+  font-weight: 700;
+  font-size: 48px;
+  color:#fff;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+  text-align: center;
+}
+
+#leformdebg
+{
+  padding: 5px;
+  font-weight: 300;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #fff;
+  font-size: 15px;
+  width: 60%;
+}
+
+#leformdebg label
+{
+  font-weight: 400;
+}
+
+#ou input, #quand input, #nom input
+{
+  border: 0px solid #000;
+  height: 50px;
+  padding: 10px;
+  width: 200px;
+}
+
+#ou, #quand, #nom
+{
+  float: left;
+  padding: 10px;
+}
+
+#btrecherche
+{
+  float: left;
+  padding: 10px;
+}
+
+#btrecherche input
+{
+  padding: 10px;
+  font-size: 19px !important;
+  line-height: 15px !important;
+  letter-spacing: undefined !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  color: #ffffff !important;
+  padding-right: 18px !important;
+  padding-left: 18px !important;
+  border-radius: 4px !important;
+  border: 0px !important;
+  background: #5147FF !important;
+  margin: 12px !important;
+  height: 48px !important;
+}
