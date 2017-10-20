@@ -8453,15 +8453,18 @@ a:hover {
 #leformdebg {
   padding: 5px;
   font-weight: 300;
+  background-color: #fff;
+  font-size: 15px;
+  width: 60%;
+  border-radius: 4px;
+}
+
+#contentlanding #leformdebg {
   position: absolute;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  background-color: #fff;
-  font-size: 15px;
-  width: 60%;
-  border-radius: 4px;
 }
 
 #leformdebg label {
@@ -8529,7 +8532,8 @@ label {
   margin-bottom: 0;
 }
 
-.card .type {
+.card .type,
+.card .nbCoiffeur {
   color: #979797;
   margin: 0;
 }
@@ -8544,5 +8548,14 @@ label {
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+#contentsearch #leformdebg {
+  overflow: auto;
+  width: 100%;
+}
+
+#contentsearch #leformdebg #btrecherche {
+  float: right;
 }
 
