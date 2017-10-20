@@ -1,13 +1,19 @@
 @extends('templates.menu')
 
 @section('content')
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
+                    @if($gerant == 0)
                     <div class="panel-heading">Inscription du membre</div>
+                    @else
+                    <div class="panel-heading">Inscription du gérant</div>
+                    @endif
 
-                    <div class="panel-body">
+
+                        <div class="panel-body">
                         <form class="form-horizontal" method="POST"  action="{{ route('user.store') }}">
                             {{ csrf_field() }}
 
