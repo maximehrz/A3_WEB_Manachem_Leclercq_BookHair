@@ -8521,6 +8521,11 @@ label {
   background-color: #fff;
   border-radius: 4px;
   margin: 10px;
+  padding: 5px;
+}
+
+.card p {
+  margin: 0;
 }
 
 .card img {
@@ -8535,7 +8540,10 @@ label {
 .card .type,
 .card .nbCoiffeur {
   color: #979797;
-  margin: 0;
+}
+
+.card .tache {
+  color: #5147FF;
 }
 
 #btVoirFiche {
