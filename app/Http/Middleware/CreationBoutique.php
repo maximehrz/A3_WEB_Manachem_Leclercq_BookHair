@@ -18,13 +18,16 @@ class CreationBoutique
      */
     public function handle($request, Closure $next)
     {
-        $Magasin = Magasin::where('gerant_id','=' , Auth::user()->id );
+        if(Auth::check()) {
 
+            $id = Auth::user()->id;
+            $Magasin = Magasin::where('gerant_id', '=', $id);
 
-        if(Auth::check() && Auth::user()->isGerant == "1" && $Magasin == NULL ){
-            return redirect( route('magasin.create'));
+            if (Auth::check() && Auth::user()->isGerant == "1" && $Magasin == NULL) {
+                return redirect(route('magasin.create'));
+            }
+            
         }
-        
         return $next($request);
        
     }
