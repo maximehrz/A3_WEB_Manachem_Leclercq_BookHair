@@ -13,9 +13,41 @@
     <h1><a href="/"><span class="glyphicon glyphicon-scissors"></span>BookHair</a></h1>
     <div id="menudroite">
         <ul>
-            <li><a href="{{route('create.gerant')}}" id="liencoif">Vous êtes coiffeur ?</a></li>
-            <li><a id="inscription" href="{{route('user.create')}}">Inscription</a></li>
-            <li><a href="/login" class="color">Connexion</a></li>
+            @guest
+                <li><a href="{{route('create.gerant')}}" id="liencoif">Vous êtes coiffeur ?</a></li>
+                <li><a id="inscription" href="{{route('user.create')}}">Inscription</a></li>
+                <li><a href="/login" class="color">Connexion</a></li>
+            @else
+                @if(session()->get('isGerant') == '0')
+                    <li><a id="inscription" href="#">Ma Boutique</a></li>
+                @else
+                    <li><a id="inscription" href="#">Mes Rendez-vous</a></li>
+
+                @endif
+                    <li class="">
+                    <a href="{{ route('logout') }}" class="" role="button" aria-expanded="false"
+                       onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                        Déconnexion
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+
+                        </li>
+                    </ul>
+                </li>
+            @endguest
+
         </ul>
     </div>
 </div>

@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isGerantMenu');
+
+    }
     /**
      * Display a listing of the resource.
      *
