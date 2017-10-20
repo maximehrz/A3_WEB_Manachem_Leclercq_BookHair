@@ -25,11 +25,11 @@ Route::resource('/user', 'UserController' );
 
 Route::get('/s', 'SearchController@index');
 
-Route::get('/s/all', 'SearchController@showAll');
+Route::post('/s/all', 'SearchController@showAll')->name('s.showwhere');
 
 // Si recherche = vide -> /s/all afficher 5 salons populaires
 
-Route::get('/s/{ville}/{nom}/{date}', 'SearchController@index');
+Route::get('/s', 'SearchController@index');
 
 Auth::routes();
 

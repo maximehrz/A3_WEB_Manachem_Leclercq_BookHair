@@ -23,9 +23,9 @@ class CreationBoutique
 
             $id = Auth::user()->id;
 
-            $magasin = DB::table('magasins') ->where('id', '=', $id )->first();
-
-            if ( Auth::user()->isGerant =="1" && $magasin == NULL ) {
+            $magasin = DB::table('magasins') ->where('gerant_id', '=', $id )->first();
+        
+            if ( Auth::user()->is_gerant =="1" && $magasin == NULL ) {
                 return redirect(route('magasin.create'));
             }
         }

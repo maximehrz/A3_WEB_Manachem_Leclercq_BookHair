@@ -1,11 +1,12 @@
 @section('leformdebg')
 
 <div id="leformdebg" class="">
-    <form class="" action="" method="post">
+    <form class="" action="{{route('s.showwhere')}}" method="post">
+        {{ csrf_field() }}
         <div id="nom" class="">
             <label for="">Nom ?</label>
             <br>
-            <input type="text" name="ou" value="" placeholder="Hair...">
+            <input type="text" name="nom" value="" placeholder="Hair...">
         </div>
         <div id="ou" class="">
             <label for="">Où ?</label>
