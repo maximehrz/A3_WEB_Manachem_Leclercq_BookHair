@@ -64,12 +64,11 @@ class UserController extends Controller
             ]);
 
             User::create([
+                'ville_id' => $request->ville,
                 'name' => $request->name,
                 'email' => $request->email,
-                'tel' => $request->tel,
-                'isGerant' => $request->gerant,
-                'ville_id' => $request->ville,
                 'password' => bcrypt($request->password),
+                'is_gerant' => $request->gerant === '1' ?  true : false,
 
             ]);
 
