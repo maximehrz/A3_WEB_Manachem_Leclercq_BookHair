@@ -51,10 +51,10 @@ class CreateCleEtrangereTable extends Migration
 
 
             $table->integer('tache_id')->nullable()->unsigned()->after('id');
-            $table->foreign('tache_id')->references('id')->on('tache');
+            $table->foreign('tache_id')->references('id')->on('taches');
 
             $table->integer('rdv_id')->nullable()->unsigned()->after('id');
-            $table->foreign('rdv_id')->references('id')->on('rdv');
+            $table->foreign('rdv_id')->references('id')->on('rdvs');
 
 
         });
