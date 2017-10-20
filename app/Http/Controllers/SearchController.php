@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
@@ -22,10 +23,15 @@ class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function showAll()
+    public function showAll(Request $request)
     {
-        //
-        return view('search');
+
+        $magasins = DB::table('magasins')
+            ->where('nom', 'LIKE', '%'.$request->nom.'%' )
+            ->orwhere('cp', 'LIKE', '%'.$request->ou.'%' )
+            ->get();
+
+        return view('search',['magasins'=>$magasins]);
     }
 
     /**
@@ -55,9 +61,9 @@ class SearchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+
     }
 
     /**

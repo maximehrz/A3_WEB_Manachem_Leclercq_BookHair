@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Magasin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MagasinController extends Controller
 {
@@ -23,7 +25,8 @@ class MagasinController extends Controller
      */
     public function create()
     {
-        return view('magasin.addmagasin');
+        $id = Auth::user()->id; 
+        return view('magasin.addmagasin',['id'=>$id]);
     }
 
     /**
@@ -34,7 +37,26 @@ class MagasinController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,
+            [
+                'name'=>'required|string|max:255',
+                'tel'=>'required|max:10|min:10',
+                'adresse'=>'required',
+                'cp'=>'required',
+                
+            ]);
+
+        Magasin::create([
+            'nom' => $request->name,
+            'gerant_id'=> $request->idGerant,
+            'tel' => $request->tel,
+            'adresse' => $request->adresse,
+            'cp' => $request->cp,
+            'logo' => 'default.png',
+        ]);
+
+        return redirect(route('home'));
+
     }
 
     /**
