@@ -16,6 +16,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('auth_gerant');
+        $this->middleware('isGerantMenu');
     }
 
     /**
@@ -26,6 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $isGerant = Auth::user()->is_gerant;
+
         return view('home', [
             'isGerant' => $isGerant,
         ]);

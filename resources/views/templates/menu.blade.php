@@ -18,7 +18,7 @@
                 <li><a id="inscription" href="{{route('user.create')}}">Inscription</a></li>
                 <li><a href="/login" class="color">Connexion</a></li>
             @else
-                @if($isGerant == 1)
+                @if(session()->get('isGerant') == '0')
                     <li><a id="inscription" href="#">Ma Boutique</a></li>
                 @else
                     <li><a id="inscription" href="#">Mes Rendez-vous</a></li>
