@@ -15,7 +15,7 @@ class Ville extends Model
      */
     protected $fillable = [
         'nom', 'cp', 'id',
-    ];
+    ]; 
 
 
 }

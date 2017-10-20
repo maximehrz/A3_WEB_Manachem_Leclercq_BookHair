@@ -23,7 +23,7 @@ class MagasinController extends Controller
      */
     public function create()
     {
-        //
+        return view('magasin.addmagasin');
     }
 
     /**

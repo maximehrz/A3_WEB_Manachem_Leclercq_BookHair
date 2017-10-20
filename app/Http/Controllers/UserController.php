@@ -26,7 +26,17 @@ class UserController extends Controller
     public function create()
     {
         $ville = Ville::all();
-        return view('user.adduser', ['villes'=>$ville] );
+        return view('user.adduser', ['villes'=>$ville], ['gerant'=>0] );
+    }
+
+    /**
+     * Show the form for creating a new gerant.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create_gerant(){
+        $ville = Ville::all();
+        return view('user.adduser', ['villes'=>$ville], ['gerant'=>1] );
     }
 
     /**
@@ -57,13 +67,16 @@ class UserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'tel' => $request->tel,
-                'isGerant' => 0 ,
+                'isGerant' => $request->gerant,
                 'ville_id' => $request->ville,
                 'password' => bcrypt($request->password),
 
             ]);
 
-            return redirect(route('home'));
+            return redirect(route('login'));
+
+
+
 
     }
 

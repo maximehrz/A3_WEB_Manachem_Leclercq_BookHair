@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Inscription du membre</div>
+                    <div class="panel-heading">Création de votre boutique</div>
 
                     <div class="panel-body">
                         <form class="form-horizontal" method="POST"  action="{{ route('user.store') }}">
@@ -39,7 +39,6 @@
                                 </div>
                             </div>
 
-                            <input id="tel" type="hidden" class="form-control" name="gerant" value="{{$gerant}}" required>
 
                             <div class="form-group{{ $errors->has('tel') ? ' has-error' : '' }}">
                                 <label for="email" class="col-md-4 control-label">Numéro de télèphone</label>
@@ -55,26 +54,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('ville') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Votre ville</label>
 
-                                <div class="col-md-6">
-                                    <select id="select"  class="form-control" name="ville" required>
-
-                                        @forelse( $villes as $ville )
-                                            <option value="{{$ville->id}}" >{{$ville->ville}}</option>
-                                        @empty
-                                            <option value="0">Il n'y a aucune ville</option>
-                                        @endforelse
-
-                                     </select>
-                                    @if ($errors->has('ville'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('ville') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
 
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                 <label for="password" class="col-md-4 control-label">Votre mot de passe</label>

@@ -34,3 +34,4 @@ Route::get('/s/{ville}/{nom}/{date}', 'SearchController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/gerant/account','UserController@create_gerant')->name('create.gerant');

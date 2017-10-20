@@ -70,6 +70,16 @@ class CreateCleEtrangereTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cle_etrangere');
+        Schema::dropIfExists('rdv-taches');
+        Schema::dropIfExists('rdvs');
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('magasins');
+        Schema::dropIfExists('coiffeurs');
+Schema::dropIfExists('rdv-taches');
+        Schema::dropIfExists('rdvs');
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('magasins');
+        Schema::dropIfExists('coiffeurs');
+
     }
 }
