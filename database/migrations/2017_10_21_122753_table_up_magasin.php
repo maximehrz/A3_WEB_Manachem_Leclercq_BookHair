@@ -13,7 +13,12 @@ class TableUpMagasin extends Migration
      */
     public function up()
     {
-        //
+
+        Schema::table('magasins', function (Blueprint $table) {
+            $table->integer('type_client')->nullable(); // Mixte, homme , femme
+            $table->string('ville')->nullable();
+            $table->string('horraire')->nullable();
+        });
     }
 
     /**

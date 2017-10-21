@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Magasin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MagasinController extends Controller
 {
@@ -73,7 +74,13 @@ class MagasinController extends Controller
     
     public function gestion()
     {
-        return view('magasin.gestion');
+        $id = Auth::user()->id;
+
+        $magasin = DB::table('magasins')
+            ->where('gerant_id', '=', $id)
+            ->first();
+
+        return view('magasin.gestion',['magasin'=>$magasin]);
     }    
 
     /**

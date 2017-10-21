@@ -21,6 +21,7 @@ class isGerantMenu
         }
         else {
             session()->put('isGerant', '0');
+
         }
         return $next($request);
     }
