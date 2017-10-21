@@ -73,7 +73,7 @@ class MagasinController extends Controller
     
     public function gestion()
     {
-        
+        return view('magasin.gestion');
     }    
 
     /**

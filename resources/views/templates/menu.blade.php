@@ -19,7 +19,7 @@
                 <li><a href="/login" class="color">Connexion</a></li>
             @else
                 @if(session()->get('isGerant') == '1')
-                    <li><a id="inscription" href="#">Ma Boutique</a></li>
+                    <li><a id="inscription" href="{{route('gestion.magasin')}}">Ma Boutique</a></li>
                 @else
                     <li><a id="inscription" href="#">Mes Rendez-vous</a></li>
 
