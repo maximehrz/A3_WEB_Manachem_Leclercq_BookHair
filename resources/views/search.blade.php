@@ -19,10 +19,14 @@
                     <p class="nbCoiffeur">Coiffeur : 2</p>
                     <p class="tache">5 tâches disponibles</p>
                     <p>€€ - €€€</p>
-                    <p class="adress">7 Rue Huguette Bonvosin, 76200, Dieppe</p>
+                    <p class="adress">{{$magasin->adresse}}, {{$magasin->cp}}, Dieppe</p>
                 </div>
                 <div id="btVoirFiche" class="col-xs-2 text-center">
-                    <button class="btn btn-primary btn-lg" type="button" name="button">Réserver</button>
+                    <form method="POST" action="{{route('rdv.calendrier')}}">
+                        {{ csrf_field() }}
+                        <input type="hidden" value="{{$magasin->id}}" name="idMagasin" />
+                    <input  type="submit" style="margin-top: 40%;" value="Réserver" class="btn btn-primary btn-lg " type="button" name="button"></input>
+                    </form>
                 </div>
             </div>
         </div>

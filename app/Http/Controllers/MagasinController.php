@@ -69,6 +69,12 @@ class MagasinController extends Controller
     {
         //
     }
+    
+    
+    public function gestion()
+    {
+        
+    }    
 
     /**
      * Show the form for editing the specified resource.

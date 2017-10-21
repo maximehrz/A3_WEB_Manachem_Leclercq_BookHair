@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RdvController extends Controller
 {
@@ -23,7 +24,30 @@ class RdvController extends Controller
      */
     public function create()
     {
-        //
+        
+    }
+
+    public function calendrier_home()
+    {
+        return redirect(route('home'));
+
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function calendrier(Request $request)
+    {
+        $magasin = DB::table('magasins')
+            ->where('id', '=', $request->idMagasin)
+            ->first();
+
+        return view('rdv.rdv_calendrier', ['magasin' => $magasin ]) ;
+        
     }
 
     /**

@@ -31,7 +31,12 @@ Route::post('/s/all', 'SearchController@showAll')->name('s.showwhere');
 
 Route::get('/s', 'SearchController@index');
 
+Route::post('reservation', 'RdvController@calendrier')->name('rdv.calendrier');
+Route::get('reservation', 'RdvController@calendrier_home')->name('rdv.calendrier_home');
+
 Auth::routes();
+
+Route::get('gestion','MagasinController@gestion')->name('gestion.magasin');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/gerant/account','UserController@create_gerant')->name('create.gerant');
