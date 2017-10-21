@@ -18,6 +18,7 @@ class TableUpMagasin extends Migration
             $table->integer('type_client')->nullable(); // Mixte, homme , femme
             $table->string('ville')->nullable();
             $table->string('horraire')->nullable();
+            $table->string('tel')->nullable();
         });
     }
 
