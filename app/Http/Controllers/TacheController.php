@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tache;
 use Illuminate\Http\Request;
 
 class TacheController extends Controller
@@ -23,7 +24,7 @@ class TacheController extends Controller
      */
     public function create()
     {
-        //
+        return view('tache.create');
     }
 
     /**
@@ -34,7 +35,24 @@ class TacheController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,
+        [
+            'nom'=>'required|string|max:255',
+            'desc'=>'required|min:10',
+
+        ]);
+
+        $Boutique = session()->get('idMagasin');
+
+        Tache::create([
+            'nom' => $request->nom,
+            'desc'=> $request->desc,
+            'coef_temps' => $request->temps,
+            'magasin_id' => $Boutique->id ,
+            'prix' => $request->prix,
+        ]);
+
+        return redirect(route('gestion.magasin'));
     }
 
     /**

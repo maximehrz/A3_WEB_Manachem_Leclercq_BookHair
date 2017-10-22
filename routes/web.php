@@ -43,3 +43,5 @@ Route::get('/gerant/account','UserController@create_gerant')->name('create.geran
 
 Route::post('/magasin','MagasinController@update_table')->name('update.magasin');
 
+Route::resource('/tache', 'TacheController');
+

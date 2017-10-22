@@ -307,8 +307,8 @@
                             Sauvegarder votre boutique
                         </button>
                     </div>
-                    <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn_fixed" href="#">Ajouter un coiffeur</a>
-                    <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn_fixed" href="#">Ajouter un service</a>
+                    <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn_fixed" href="{{route('coiffeur.create')}}">Ajouter un coiffeur</a>
+                    <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn_fixed" href="{{route('tache.create')}}">Ajouter un service</a>
                 </div>
             </div>
         </form>
