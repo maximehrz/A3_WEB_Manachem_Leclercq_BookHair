@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Rdv;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RdvController extends Controller
@@ -52,7 +54,14 @@ class RdvController extends Controller
             ->where('id', '=', $request->idMagasin)
             ->first();
 
-        return view('rdv.rdv_calendrier', ['magasin' => $magasin ]) ;
+        $taches = DB::table('taches')
+            ->where('magasin_id', '=', $request->idMagasin)
+            ->get();
+
+        // dd($magasin);
+        // dd($taches);
+
+        return view('rdv.rdv_calendrier', ['magasin' => $magasin, 'taches' => $taches ]) ;
         
     }
 
@@ -65,6 +74,23 @@ class RdvController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request);
+
+        $this->validate($request,
+            [
+                'tache'=>'required',
+                'date'=>'required',
+                'time'=>'required',
+                'id_magasin'=>'required',
+            ]);
+        Rdv::create([
+            'client_id' => Auth::user()->id,
+            'magasin_id' => $request->id_magasin,
+            'date_debut' => $request->date .' '. $request->time,
+            'date_fin' => $request->date .' '. $request->time,
+        ]);
+
+        return redirect()->route('home');
     }
 
     /**
