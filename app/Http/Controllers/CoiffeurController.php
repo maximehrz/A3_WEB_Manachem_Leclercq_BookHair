@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Coiffeur;
+use App\Tache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +26,7 @@ class CoiffeurController extends Controller
      */
     public function create()
     {
-        //
+        return view('coiffeur.create');
     }
 
     /**
@@ -35,7 +37,22 @@ class CoiffeurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,
+            [
+                'nom'=>'required|string|max:255',
+
+
+            ]);
+
+        $Boutique = session()->get('idMagasin');
+
+        Coiffeur::create([
+            'nom' => $request->nom,
+            'magasin_id' => $Boutique->id ,
+            'sexe' => $request->type,
+        ]);
+
+        return redirect(route('gestion.magasin'));
     }
 
     /**
