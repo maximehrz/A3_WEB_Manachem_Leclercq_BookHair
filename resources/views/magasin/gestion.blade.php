@@ -3,49 +3,6 @@
 
 @section('content')
 
-    <style>
-        .col-md-8 .radio-inline {
-            width: 275px;
-        }
-
-        .r2 {
-            width: 70px!important;
-        }
-
-        .position_absolute {
-            position: fixed;
-        z-index: 999;
-        bottom: 0;
-        width: 100%;
-        height: 50px;
-        background-color: white;
-        -webkit-box-shadow: 0px 2px 19px -1px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 2px 19px -1px rgba(0,0,0,0.75);
-        box-shadow: 0px 2px 19px -1px rgba(0,0,0,0.75);
-        }
-
-        .btn_fixed {
-            height: 40px!important;
-            margin-top: 5px!important;
-        }
-
-        form{
-            margin-bottom: 50px;
-        }
-
-        .panel-body {padding: 0}
-
-        .un_coiffeur {
-            border: 1px solid #c3c3c3;
-            height: 200px;
-            text-align: center;
-            box-sizing: border-box;
-            margin: 10px;
-        }
-    </style>
-
-
-
     <div class="panel-body">
         <form class="form-horizontal" method="POST"  action="{{ route('update.magasin') }}">
             {{ csrf_field() }}
@@ -139,7 +96,6 @@
 
             <div class="col-md-12" style="margin-top: 25px; margin-bottom: 50px;">
             <h3 style="text-align: center;">Vos coiffeurs</h3>
-
                 <div class="col-md-8 col-md-offset-2 ">
 
                     @forelse ( $coiffeurs as $coiffeur )
@@ -153,15 +109,10 @@
                     @empty
                         <p style="text-align: center;">Vous n'avez pas enregistrer de coiffeur</p>
                     @endforelse
-
-
-
-
-
-
-
                 </div>
-
+                <div class="col-xs-4 col-xs-offset-4">
+                    <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn-block" href="{{route('coiffeur.create')}}">Ajouter un coiffeur</a>
+                </div>
 
             </div>
 
@@ -173,7 +124,7 @@
                     <div class="col-md-3 un_coiffeur">
                         <div class="col-md-12 ">
                             <h4>{{$tache->nom}}</h4>
-                            <li>Prix : @if ( !empty($tache->prix)) {{$tache->prix}} @else Indéfini @endif</li>
+                            <li>Prix : @if ( !empty($tache->prix)) {{$tache->prix}} € @else Indéfini @endif</li>
                             <li>Durée : @if ( !empty($tache->coef_temps)) {{$tache->coef_temps * 30 }}min @else Temps Indéfini @endif</li>
                             <br/>
                             <p>Description : @if ( !empty($tache->desc)) {{$tache->desc }} @else  Indéfini @endif</p>
@@ -183,14 +134,10 @@
                         <p style="text-align: center;">Vous n'avez pas enregistrer de service</p>
 
                     @endforelse
-
-
-
-
-
-
                 </div>
-
+                <div class="col-xs-4 col-xs-offset-4">
+                    <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn-block" href="{{route('tache.create')}}">Ajouter un service</a>
+                </div>
 
             </div>
 
@@ -228,7 +175,7 @@
             </div>
             <hr/>
             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
-                <label for="email" class="col-md-4 control-label">Lundi :</label>
+                <label for="email" class="col-md-4 control-label">Mercredi :</label>
 
                 <div class="col-md-8">
                     <label class="radio-inline"><input type="time" name="mercredi_m_o" value="{{$horraires[2][1]}}"><label style="margin-left: 10px;">Ouverture Matin</label></label>
@@ -243,7 +190,7 @@
             </div>
             <hr/>
             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
-                <label for="email" class="col-md-4 control-label">Lundi :</label>
+                <label for="email" class="col-md-4 control-label">Jeudi :</label>
 
                 <div class="col-md-8">
                     <label class="radio-inline"><input type="time" name="jeudi_m_o" value="{{$horraires[3][1]}}"><label style="margin-left: 10px;">Ouverture Matin</label></label>
@@ -258,7 +205,7 @@
             </div>
             <hr/>
             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
-                <label for="email" class="col-md-4 control-label">Lundi :</label>
+                <label for="email" class="col-md-4 control-label">Vendredi :</label>
                 <div class="col-md-8">
                     <label class="radio-inline"><input type="time" name="vendredi_m_o" value="{{$horraires[4][1]}}"><label style="margin-left: 10px;">Ouverture Matin</label></label>
                     <label class="radio-inline"><input type="time" name="vendredi_m_f" value="{{$horraires[4][2]}}"><label style="margin-left: 10px;">Fermeture Matin</label></label>
@@ -272,7 +219,7 @@
             </div>
             <hr/>
             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
-                <label for="email" class="col-md-4 control-label">Lundi :</label>
+                <label for="email" class="col-md-4 control-label">Samedi :</label>
                 <div class="col-md-8">
                     <label class="radio-inline"><input type="time" name="samedi_m_o" value="{{$horraires[5][1]}}"><label style="margin-left: 10px;">Ouverture Matin</label></label>
                     <label class="radio-inline"><input type="time" name="samedi_m_f" value="{{$horraires[5][2]}}"><label style="margin-left: 10px;">Fermeture Matin</label></label>
@@ -286,7 +233,7 @@
             </div>
             <hr/>
             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
-                <label for="email" class="col-md-4 control-label">Lundi :</label>
+                <label for="email" class="col-md-4 control-label">Dimanche :</label>
                 <div class="col-md-8">
                     <label class="radio-inline"><input type="time" name="dimanche_m_o" value="{{$horraires[6][1]}}"><label style="margin-left: 10px;">Ouverture Matin</label></label>
                     <label class="radio-inline"><input type="time" name="dimanche_m_f" value="{{$horraires[6][2]}}"><label style="margin-left: 10px;">Fermeture Matin</label></label>
@@ -299,18 +246,17 @@
                 </div>
             </div>
 
-            <hr/>
-            <div class="position_absolute">
-                <div class="form-group">
-                    <div class="col-md-2 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary btn_fixed">
-                            Sauvegarder votre boutique
-                        </button>
-                    </div>
-                    <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn_fixed" href="{{route('coiffeur.create')}}">Ajouter un coiffeur</a>
-                    <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn_fixed" href="{{route('tache.create')}}">Ajouter un service</a>
+            <br>
+
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">
+                        Sauvegarder votre boutique
+                    </button>
                 </div>
+
             </div>
+
         </form>
     </div>
 
