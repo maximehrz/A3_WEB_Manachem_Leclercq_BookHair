@@ -33,7 +33,6 @@ class SearchController extends Controller
 
         $magasins = DB::table('magasins')
             ->where('nom', 'LIKE', '%'.$request->nom.'%' )
-            ->orwhere('cp', 'LIKE', '%'.$request->ou.'%' )
             ->get();
 
         return view('search',['magasins'=>$magasins]);
