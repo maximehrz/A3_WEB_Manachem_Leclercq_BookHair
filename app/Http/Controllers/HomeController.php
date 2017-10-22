@@ -47,11 +47,12 @@ class HomeController extends Controller
             $arraytaches = [];
 
             foreach ( $rdvs as $rdv ){
-                $taches = DB::table('rdv-taches')
-                    ->where('rdv_id ', '=', $rdv->id)
-                    ->get();
-                array_push ( $arraytaches , $taches );
+                $taches = DB::table('rdv_taches')
+                    ->where('rdv_id' ,'=', $rdv->id)
+                    ->first();
+                array_push ( $arraytaches , $taches->tache_nom );
             }
+           
         }
 
         return view('home', [

@@ -23,7 +23,7 @@
                 @if(session()->get('isGerant') == '1')
                     <li><a id="inscription" href="{{route('gestion.magasin')}}">Ma Boutique</a></li>
                 @else
-                    <li><a id="inscription" href="#">Mes Rendez-vous</a></li>
+                    <li><a id="inscription" href="{{route('rdv.index')}}">Mes Rendez-vous</a></li>
 
                 @endif
                     <li class="">

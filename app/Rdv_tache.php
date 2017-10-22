@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RdvTache extends Model
+class Rdv_tache extends Model
 {
     protected $fillable = [
-        'id', 'rdv_id', 'tache_id',
+        'id',	'rdv_id', 'tache_id', 'rdv-id','tache_nom'
     ];
 }

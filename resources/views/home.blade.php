@@ -15,12 +15,10 @@
 
     @forelse( $rdvs as $rdv )
         <ul>
-            <h2>{{$rdv->client_id->nom}} </h2>
+            <h2>{{$rdv->client_nom}} </h2>
             <li>{{$rdv->date_debut}} - {{$rdv->date_fin}}</li>
 
-            @foreach( $taches as $tache )
-                <li>{{$tache->nom}} - {{$tache->prix}}</li>
-            @endforeach
+
         </ul>
     @empty
         <p>Vous n'avez aucun rendez-vous</p>

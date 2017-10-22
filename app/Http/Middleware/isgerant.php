@@ -16,6 +16,8 @@ class isgerant
      */
     public function handle($request, Closure $next)
     {
+
+        
         $id = Auth::user()->is_gerant ;
         if ( $id  == 1 ){
             return $next($request);
