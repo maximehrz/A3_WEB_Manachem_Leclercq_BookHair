@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Coiffeur;
 use App\Magasin;
+use App\Tache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -47,6 +49,17 @@ class MagasinController extends Controller
                 
             ]);
 
+        $lundi = [ 0, '08:00' , '12:00' , '14:00' , '17:00' ] ;
+        $mardi = [1 , '08:00' , '12:00' , '14:00' , '17:00' ] ;
+        $mercredi = [1 , '08:00' , '12:00' , '14:00' , '17:00' ] ;
+        $jeudi = [ 1 ,'08:00', '12:00' , '14:00' , '17:00' ] ;
+        $vendredi = [1 , '08:00', '12:00' , '14:00' , '17:00' ] ;
+        $samedi = [ 1 ,'08:00' , '12:00' , '14:00' , '17:00' ] ;
+        $dimanche = [ 0 ,'08:00' , '12:00' , '14:00' , '17:00' ] ;
+
+        $arrayHorraire = [ $lundi , $mardi , $mercredi , $jeudi , $vendredi , $samedi , $dimanche ];
+        $arrayHorraire = serialize ( $arrayHorraire );
+
         Magasin::create([
             'nom' => $request->name,
             'gerant_id'=> $request->idGerant,
@@ -54,6 +67,27 @@ class MagasinController extends Controller
             'adresse' => $request->adresse,
             'cp' => $request->cp,
             'logo' => 'default.png',
+            'horraire' => $arrayHorraire,
+        ]);
+
+        $id = Auth::User()->id;
+
+        $id_mag = DB::table('magasins')
+            ->where('gerant_id', '=', $id )
+            ->first();
+
+        Tache::create([
+            'nom' => 'Coupe basique',
+            'magasin_id'=> $id_mag->id,
+            'coef_temps' => 1,
+            'desc' => "Shampoing + Coupe de cheuveux",
+            'prix' => "20",
+        ]);
+
+        Coiffeur::create([
+            'nom' => 'Coiffeur',
+            'magasin_id'=> $id_mag->id,
+            'sexe' => 0,
         ]);
 
         return redirect(route('home'));
@@ -88,8 +122,9 @@ class MagasinController extends Controller
             ->where('magasin_id', '=', $magasin->id)
             ->get();
 
+        $horraire = unserialize ($magasin->horraire);
 
-        return view('magasin.gestion',['magasin'=>$magasin,'coiffeurs'=>$coiffeur, 'taches'=>$tache] );
+        return view('magasin.gestion',['magasin'=>$magasin,'coiffeurs'=>$coiffeur,'taches'=>$tache,'horraires'=>$horraire]);
     }    
 
     /**
@@ -110,9 +145,9 @@ class MagasinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update_table(Request $request)
     {
-        $idBoutique = session()->get('idMagasin');
+        $Boutique = session()->get('idMagasin');
 
         $this->validate($request,
             [
@@ -124,33 +159,32 @@ class MagasinController extends Controller
 
             ]);
 
-        $lundi =0 ;
-        $mardi =0 ;
-        $mercredi =0 ;
-        $jeudi =0 ;
-        $vendredi =0 ;
-        $samedi =0 ;
-        $dimanche = 0;
+        $lundi = [$request->lundi_f , $request->lundi_m_o , $request->lundi_m_f , $request->lundi_a_o , $request->lundi_f_o ] ;
+        $mardi = [$request->mardi_f , $request->mardi_m_o , $request->mardi_m_f , $request->mardi_a_o , $request->mardi_f_o ] ;
+        $mercredi = [$request->mercredi_f , $request->mercredi_m_o , $request->mercredi_m_f , $request->mercredi_a_o , $request->mercredi_f_o ] ;
+        $jeudi = [ $request->jeudi_f ,$request->jeudi_m_o , $request->jeudi_m_f , $request->jeudi_a_o , $request->jeudi_f_o ] ;
+        $vendredi = [$request->vendredi_f , $request->vendredi_m_o , $request->vendredi_m_f , $request->vendredi_a_o , $request->vendredi_f_o ] ;
+        $samedi = [ $request->samedi_f ,$request->samedi_m_o , $request->samedi_m_f , $request->samedi_a_o , $request->samedi_f_o ] ;
+        $dimanche = [ $request->dimanche_f ,$request->dimanche_m_o , $request->dimanche_m_f , $request->dimanche_a_o , $request->dimanche_f_o ] ;
 
 
         $arrayHorraire = [ $lundi , $mardi , $mercredi , $jeudi , $vendredi , $samedi , $dimanche ];
+        $arrayHorraire = serialize ( $arrayHorraire );
 
-            DB::table('magasins')
-                ->where('id', $idBoutique)
+        DB::table('magasins')
+                ->where('id', $Boutique->id)
                 ->update(array(
-                    'nom' => $request->name,
-                    'type'=> $request->type,
+                    'nom' => $request->nom,
+                    'type_client'=> $request->type,
                     'tel' => $request->tel,
                     'adresse' => $request->adresse,
                     'cp' => $request->cp,
                     'logo' => 'default.png',
-                    'horraire' => $arrayHorraire));
+                    'horraire' => $arrayHorraire
+                ));
 
-
-
-
-
-        return redirect(route('home'));
+            
+        return redirect(route('gestion.magasin'));
     }
 
     /**

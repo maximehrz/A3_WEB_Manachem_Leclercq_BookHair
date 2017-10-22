@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TableUpMagasin extends Migration
+class TableTachesPrix extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class TableUpMagasin extends Migration
      */
     public function up()
     {
-
-        Schema::table('magasins', function (Blueprint $table) {
-            $table->integer('type_client')->nullable(); // Mixte, homme , femme
-            $table->string('ville')->nullable();
-            $table->text('horraire')->nullable();
-            $table->string('tel')->nullable();
-        });
+        Schema::table('taches', function (Blueprint $table) {
+            $table->integer('prix')->nullable();
+         });
     }
 
     /**

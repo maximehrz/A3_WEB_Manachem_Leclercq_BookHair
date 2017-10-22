@@ -8,6 +8,10 @@
             width: 275px;
         }
 
+        .r2 {
+            width: 70px!important;
+        }
+
         .position_absolute {
             position: fixed;
         z-index: 999;
@@ -43,7 +47,7 @@
 
 
     <div class="panel-body">
-        <form class="form-horizontal" method="POST"  action="{{ route('magasin.store') }}">
+        <form class="form-horizontal" method="POST"  action="{{ route('update.magasin') }}">
             {{ csrf_field() }}
 
             <h1 style="text-align: center; margin-bottom:75px;">Gestion de votre boutique</h1>
@@ -120,9 +124,9 @@
 
                 <div class="col-md-6">
 
-                    <label class="radio-inline"><input type="radio" checked name="type" value="mixte">Mixte</label>
-                    <label class="radio-inline"><input type="radio" name="type" value="femme">Femme</label>
-                    <label class="radio-inline"><input type="radio" name="type" value="homme">Homme</label>
+                    <label class="radio-inline"><input type="radio" checked name="type" value="0">Mixte</label>
+                    <label class="radio-inline"><input type="radio" name="type" value="1">Femme</label>
+                    <label class="radio-inline"><input type="radio" name="type" value="2">Homme</label>
 
 
                     @if ($errors->has('type'))
@@ -142,6 +146,8 @@
                     <div class="col-md-3 un_coiffeur">
                         <div class="col-md-12 ">
                             <h4>{{$coiffeur->nom}}</h4>
+                            <li>Nom : @if ( !empty($coiffeur->nom)) {{$coiffeur->nom}} @else Indéfini @endif</li>
+                            <li>Sexe : @if ( !empty($coiffeur->sexe)) {{$coiffeur->sexe}} @else Indéfini @endif</li>
                         </div>
                     </div>
                     @empty
@@ -167,6 +173,10 @@
                     <div class="col-md-3 un_coiffeur">
                         <div class="col-md-12 ">
                             <h4>{{$tache->nom}}</h4>
+                            <li>Prix : @if ( !empty($tache->prix)) {{$tache->prix}} @else Indéfini @endif</li>
+                            <li>Durée : @if ( !empty($tache->coef_temps)) {{$tache->coef_temps * 30 }}min @else Temps Indéfini @endif</li>
+                            <br/>
+                            <p>Description : @if ( !empty($tache->desc)) {{$tache->desc }} @else  Indéfini @endif</p>
                         </div>
                     </div>
                     @empty
@@ -186,16 +196,19 @@
 
             <br/>
             <h3 style="text-align: center; margin-bottom: 45px; margin-top: 45px;">Horraire de la boutique</h3>
+
             <hr/>
             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
                 <label for="email" class="col-md-4 control-label">Lundi :</label>
                 <div class="col-md-8">
-                    <label class="radio-inline"><input type="time" name="lundi_m_o" value="mixte"><label style="margin-left: 10px;">Ouverture Matin</label></label>
-                    <label class="radio-inline"><input type="time" name="lundi_m_f" value="mixte"><label style="margin-left: 10px;">Fermeture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="lundi_m_o" value="{{$horraires[0][1]}}"><label style="margin-left: 10px;">Ouverture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="lundi_m_f" value="{{$horraires[0][2]}}"><label style="margin-left: 10px;">Fermeture Matin</label></label>
                     <br/>
-                    <label class="radio-inline"><input type="time" name="lundi_a_o" value="mixte"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
-                    <label class="radio-inline"><input type="time" name="lundi_a_f" value="mixte"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
-                    <label class="radio-inline"><input type="radio" name="lundi_f" value="fermer">fermer</label>
+                    <label class="radio-inline"><input type="time" name="lundi_a_o" value="{{$horraires[0][3]}}"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
+                    <label class="radio-inline"><input type="time" name="lundi_a_f" value="{{$horraires[0][4]}}"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
+                    </br>
+                    <label class="radio-inline r2"><input type="radio" name="lundi_f" @if( $horraires[0][0] == 0 ) checked @endif value="0">fermer</label>
+                    <label class="radio-inline r2"><input type="radio" name="lundi_f" @if( $horraires[0][0] == 1 ) checked @endif value="1">ouvert</label>
                 </div>
             </div>
 <hr/>
@@ -203,12 +216,14 @@
                 <label for="email" class="col-md-4 control-label">Mardi :</label>
 
                 <div class="col-md-8">
-                    <label class="radio-inline"><input type="time" name="mardi_m_o" value="mixte"><label style="margin-left: 10px;">Ouverture Matin</label></label>
-                    <label class="radio-inline"><input type="time" name="mardi_m_f" value="mixte"><label style="margin-left: 10px;">Fermeture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="mardi_m_o" value="{{$horraires[1][1]}}"><label style="margin-left: 10px;">Ouverture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="mardi_m_f" value="{{$horraires[1][2]}}"><label style="margin-left: 10px;">Fermeture Matin</label></label>
                     <br/>
-                    <label class="radio-inline"><input type="time" name="mardi_a_o" value="mixte"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
-                    <label class="radio-inline"><input type="time" name="mardi_a_f" value="mixte"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
-                    <label class="radio-inline"><input type="radio" name="mardi_f" value="fermer">fermer</label>
+                    <label class="radio-inline"><input type="time" name="mardi_a_o" value="{{$horraires[1][3]}}"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
+                    <label class="radio-inline"><input type="time" name="mardi_a_f" value="{{$horraires[1][4]}}"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
+                    </br>
+                    <label class="radio-inline r2"><input type="radio" name="mardi_f" @if( $horraires[1][0] == 0 ) checked @endif value="0">fermer</label>
+                    <label class="radio-inline r2"><input type="radio" name="mardi_f" @if( $horraires[1][0] == 1 ) checked @endif value="1">ouvert</label>
                 </div>
             </div>
             <hr/>
@@ -216,12 +231,14 @@
                 <label for="email" class="col-md-4 control-label">Lundi :</label>
 
                 <div class="col-md-8">
-                    <label class="radio-inline"><input type="time" name="mercredi_m_o" value="mixte"><label style="margin-left: 10px;">Ouverture Matin</label></label>
-                    <label class="radio-inline"><input type="time" name="mercredi_m_f" value="mixte"><label style="margin-left: 10px;">Fermeture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="mercredi_m_o" value="{{$horraires[2][1]}}"><label style="margin-left: 10px;">Ouverture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="mercredi_m_f" value="{{$horraires[2][2]}}"><label style="margin-left: 10px;">Fermeture Matin</label></label>
                     <br/>
-                    <label class="radio-inline"><input type="time" name="mercredi_a_o" value="mixte"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
-                    <label class="radio-inline"><input type="time" name="mercredi_a_f" value="mixte"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
-                    <label class="radio-inline"><input type="radio" name="mercredi_f" value="fermer">fermer</label>
+                    <label class="radio-inline"><input type="time" name="mercredi_a_o" value="{{$horraires[2][3]}}"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
+                    <label class="radio-inline"><input type="time" name="mercredi_a_f" value="{{$horraires[2][4]}}"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
+                    </br>
+                    <label class="radio-inline r2"><input type="radio" name="mercredi_f" @if( $horraires[2][0] == 0 ) checked @endif value="0">fermer</label>
+                    <label class="radio-inline r2"><input type="radio" name="mercredi_f" @if( $horraires[2][0] == 1 ) checked @endif value="1">ouvert</label>
                 </div>
             </div>
             <hr/>
@@ -229,48 +246,56 @@
                 <label for="email" class="col-md-4 control-label">Lundi :</label>
 
                 <div class="col-md-8">
-                    <label class="radio-inline"><input type="time" name="jeudi_m_o" value="mixte"><label style="margin-left: 10px;">Ouverture Matin</label></label>
-                    <label class="radio-inline"><input type="time" name="jeudi_m_f" value="mixte"><label style="margin-left: 10px;">Fermeture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="jeudi_m_o" value="{{$horraires[3][1]}}"><label style="margin-left: 10px;">Ouverture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="jeudi_m_f" value="{{$horraires[3][2]}}"><label style="margin-left: 10px;">Fermeture Matin</label></label>
                     <br/>
-                    <label class="radio-inline"><input type="time" name="jeudi_a_o" value="mixte"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
-                    <label class="radio-inline"><input type="time" name="jeudi_a_f" value="mixte"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
-                    <label class="radio-inline"><input type="radio" name="jeudi_f" value="fermer">fermer</label>
+                    <label class="radio-inline"><input type="time" name="jeudi_a_o" value="{{$horraires[3][3]}}"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
+                    <label class="radio-inline"><input type="time" name="jeudi_a_f" value="{{$horraires[3][4]}}"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
+                    </br>
+                    <label class="radio-inline r2"><input type="radio" name="jeudi_f" @if( $horraires[3][0] == 0 ) checked @endif value="0">fermer</label>
+                    <label class="radio-inline r2"><input type="radio" name="jeudi_f" @if( $horraires[3][0] == 1 ) checked @endif value="1">ouvert</label>
                 </div>
             </div>
             <hr/>
             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
                 <label for="email" class="col-md-4 control-label">Lundi :</label>
                 <div class="col-md-8">
-                    <label class="radio-inline"><input type="time" name="vendredi_m_o" value="mixte"><label style="margin-left: 10px;">Ouverture Matin</label></label>
-                    <label class="radio-inline"><input type="time" name="vendredi_m_f" value="mixte"><label style="margin-left: 10px;">Fermeture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="vendredi_m_o" value="{{$horraires[4][1]}}"><label style="margin-left: 10px;">Ouverture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="vendredi_m_f" value="{{$horraires[4][2]}}"><label style="margin-left: 10px;">Fermeture Matin</label></label>
                     <br/>
-                    <label class="radio-inline"><input type="time" name="vendredi_a_o" value="mixte"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
-                    <label class="radio-inline"><input type="time" name="vendredi_a_f" value="mixte"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
-                    <label class="radio-inline"><input type="radio" name="vendredi_f" value="fermer">fermer</label>
+                    <label class="radio-inline"><input type="time" name="vendredi_a_o" value="{{$horraires[4][3]}}"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
+                    <label class="radio-inline"><input type="time" name="vendredi_a_f" value="{{$horraires[4][4]}}"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
+                    </br>
+                    <label class="radio-inline r2"><input type="radio" name="vendredi_f" @if( $horraires[4][0] == 0 ) checked @endif value="0">fermer</label>
+                    <label class="radio-inline r2"><input type="radio" name="vendredi_f" @if( $horraires[4][0] == 1 ) checked @endif value="1">ouvert</label>
                 </div>
             </div>
             <hr/>
             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
                 <label for="email" class="col-md-4 control-label">Lundi :</label>
                 <div class="col-md-8">
-                    <label class="radio-inline"><input type="time" name="samedi_m_o" value="mixte"><label style="margin-left: 10px;">Ouverture Matin</label></label>
-                    <label class="radio-inline"><input type="time" name="samedi_m_f" value="mixte"><label style="margin-left: 10px;">Fermeture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="samedi_m_o" value="{{$horraires[5][1]}}"><label style="margin-left: 10px;">Ouverture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="samedi_m_f" value="{{$horraires[5][2]}}"><label style="margin-left: 10px;">Fermeture Matin</label></label>
                     <br/>
-                    <label class="radio-inline"><input type="time" name="samedi_a_o" value="mixte"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
-                    <label class="radio-inline"><input type="time" name="samedi_a_f" value="mixte"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
-                    <label class="radio-inline"><input type="radio" name="samedi_f" value="fermer">fermer</label>
+                    <label class="radio-inline"><input type="time" name="samedi_a_o" value="{{$horraires[5][3]}}"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
+                    <label class="radio-inline"><input type="time" name="samedi_a_f" value="{{$horraires[5][4]}}"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
+                    </br>
+                    <label class="radio-inline r2"><input type="radio" name="samedi_f" @if( $horraires[5][0] == 0 ) checked @endif value="0">fermer</label>
+                    <label class="radio-inline r2"><input type="radio" name="samedi_f" @if( $horraires[5][0] == 1 ) checked @endif value="1">ouvert</label>
                 </div>
             </div>
             <hr/>
             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
                 <label for="email" class="col-md-4 control-label">Lundi :</label>
                 <div class="col-md-8">
-                    <label class="radio-inline"><input type="time" name="dimanche_m_o" value="mixte"><label style="margin-left: 10px;">Ouverture Matin</label></label>
-                    <label class="radio-inline"><input type="time" name="dimanche_m_f" value="mixte"><label style="margin-left: 10px;">Fermeture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="dimanche_m_o" value="{{$horraires[6][1]}}"><label style="margin-left: 10px;">Ouverture Matin</label></label>
+                    <label class="radio-inline"><input type="time" name="dimanche_m_f" value="{{$horraires[6][2]}}"><label style="margin-left: 10px;">Fermeture Matin</label></label>
                     <br/>
-                    <label class="radio-inline"><input type="time" name="dimanche_a_o" value="mixte"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
-                    <label class="radio-inline"><input type="time" name="dimanche_a_f" value="mixte"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
-                    <label class="radio-inline"><input type="radio" name="dimanche_f" value="fermer">fermer</label>
+                    <label class="radio-inline"><input type="time" name="dimanche_a_o" value="{{$horraires[6][3]}}"><label style="margin-left: 10px;">Ouverture Après-midi</label></label>
+                    <label class="radio-inline"><input type="time" name="dimanche_a_f" value="{{$horraires[6][4]}}"><label style="margin-left: 10px;">Fermeture Après-midi</label></label>
+                    </br>
+                    <label class="radio-inline r2"><input type="radio" name="dimanche_f" @if( $horraires[6][0] == 0 ) checked @endif value="0">fermer</label>
+                    <label class="radio-inline r2"><input type="radio" name="dimanche_f" @if( $horraires[6][0] == 1 ) checked @endif value="1">ouvert</label>
                 </div>
             </div>
 
