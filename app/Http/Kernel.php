@@ -61,5 +61,6 @@ class Kernel extends HttpKernel
         'auth_gerant' => \App\Http\Middleware\CreationBoutique::class,
         'isGerantMenu' => \App\Http\Middleware\isGerantMenu::class,
         'isConnected' => \App\Http\Middleware\isConnected::class,
+        'isgerant' => \App\Http\Middleware\isgerant::class,
     ];
 }

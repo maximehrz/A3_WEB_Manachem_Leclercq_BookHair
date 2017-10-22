@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class MagasinController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isgerant');
+    }
+
     /**
      * Display a listing of the resource.
      *

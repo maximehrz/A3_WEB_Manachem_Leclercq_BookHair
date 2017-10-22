@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class isgerant
 {
@@ -15,8 +16,8 @@ class isgerant
      */
     public function handle($request, Closure $next)
     {
-
-        if ( session()->get('isGerant') == 1 ){
+        $id = Auth::user()->is_gerant ;
+        if ( $id  == 1 ){
             return $next($request);
         }
 
