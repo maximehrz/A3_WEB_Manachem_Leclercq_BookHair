@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'auth_gerant' => \App\Http\Middleware\CreationBoutique::class,
         'isGerantMenu' => \App\Http\Middleware\isGerantMenu::class,
+        'isConnected' => \App\Http\Middleware\isConnected::class,
     ];
 }
