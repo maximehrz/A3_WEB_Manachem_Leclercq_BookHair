@@ -258,6 +258,80 @@
             </div>
 
         </form>
+
+        <div class="col-md-12" style="margin-top: 25px; margin-bottom: 50px;">
+            <h3 style="text-align: center;">Vos coiffeurs</h3>
+
+            <div class="col-md-8 col-md-offset-2 ">
+
+                @forelse ( $coiffeurs as $coiffeur )
+                    <div class="col-md-3 un_coiffeur">
+                        <div class="col-md-12 ">
+                            <h4>{{$coiffeur->nom}}</h4>
+                            <li>Nom : @if ( !empty($coiffeur->nom)) {{$coiffeur->nom}} @else Indéfini @endif</li>
+                            <li>Sexe : @if ( !empty($coiffeur->sexe)) {{$coiffeur->sexe}} @else Indéfini @endif</li>
+
+                            <form method="POST" action="{{ route('coiffeur.destroy',['id'=>$coiffeur->id]) }}" >
+                                {{ method_field('DELETE')}}
+                                {{ csrf_field() }}
+                                <button type="submit">Delete</button>
+                            </form>
+
+
+                        </div>
+                    </div>
+                @empty
+                    <p style="text-align: center;">Vous n'avez pas enregistré de coiffeur</p>
+                @endforelse
+
+
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+
+        <div class="col-md-12" style="margin-top: 25px; margin-bottom: 50px;">
+            <h3 style="text-align: center;">Vos services</h3>
+
+            <div class="col-md-8 col-md-offset-2 ">
+                @forelse( $taches as $tache )
+                    <div class="col-md-3 un_coiffeur">
+                        <div class="col-md-12 ">
+                            <h4>{{$tache->nom}}</h4>
+                            <li>Prix : @if ( !empty($tache->prix)) {{$tache->prix}} @else Indéfini @endif</li>
+                            <li>Durée : @if ( !empty($tache->coef_temps)) {{$tache->coef_temps * 30 }}min @else Temps Indéfini @endif</li>
+                            <br/>
+                            <p>Description : @if ( !empty($tache->desc)) {{$tache->desc }} @else  Indéfini @endif</p>
+                        </div>
+                        <form method="POST" action="{{ route('tache.destroy',['id'=>$tache->id]) }}" >
+                            {{ method_field('DELETE')}}
+                            {{ csrf_field() }}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+
+
+                @empty
+                    <p style="text-align: center;">Vous n'avez pas enregistrer de service</p>
+
+                @endforelse
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+
     </div>
 
 @endsection

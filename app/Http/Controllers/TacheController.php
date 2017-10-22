@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tache;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TacheController extends Controller
 {
@@ -63,7 +64,7 @@ class TacheController extends Controller
      */
     public function show($id)
     {
-        //
+        dd('show');
     }
 
     /**
@@ -74,7 +75,7 @@ class TacheController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -97,6 +98,10 @@ class TacheController extends Controller
      */
     public function destroy($id)
     {
-        //
+         DB::table('taches')
+            ->where('id', '=', $id)
+            ->delete();
+
+        return redirect(route('gestion.magasin'));
     }
 }

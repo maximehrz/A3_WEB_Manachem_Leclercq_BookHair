@@ -48,3 +48,4 @@ Route::resource('/tache', 'TacheController');
 Route::post('/magasin','MagasinController@store')->name('magasin.store');
 
 Route::post('/magasin/update','MagasinController@update_table')->name('update.magasin');
+

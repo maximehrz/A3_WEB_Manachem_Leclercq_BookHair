@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CoiffeurController extends Controller
 {
@@ -79,6 +80,10 @@ class CoiffeurController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('coiffeurs')
+            ->where('id', '=', $id)
+            ->delete();
+
+        return redirect(route('gestion.magasin'));
     }
 }
