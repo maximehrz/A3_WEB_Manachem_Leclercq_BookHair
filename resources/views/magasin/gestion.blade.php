@@ -222,7 +222,7 @@
                         <div class="col-md-12 ">
                             <h4>{{$coiffeur->nom}}</h4>
                             <li>Nom : @if ( !empty($coiffeur->nom)) {{$coiffeur->nom}} @else Indéfini @endif</li>
-                            <li>Sexe : @if ( !empty($coiffeur->sexe)) {{$coiffeur->sexe}} @else Indéfini @endif</li>
+                            <li>Sexe : @if ( !empty($coiffeur->sexe)) @if ( $coiffeur->sexe == 1 ) Femme @else Homme @endif @else Indéfini @endif</li>
 
                             <form method="POST" action="{{ route('coiffeur.destroy',['id'=>$coiffeur->id]) }}" >
                                 {{ method_field('DELETE')}}
