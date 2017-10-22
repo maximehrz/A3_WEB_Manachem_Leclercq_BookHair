@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Rdv;
+use App\RdvTache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -88,6 +89,14 @@ class RdvController extends Controller
             'magasin_id' => $request->id_magasin,
             'date_debut' => $request->date .' '. $request->time,
             'date_fin' => $request->date .' '. $request->time,
+        ]);
+
+        $idRdv = DB::table('rdvs')
+            ->first();
+
+        RdvTache::create([
+            'rdv_id' => $idRdv->id,
+            'tache_id' => $request->tache,
         ]);
 
         return redirect()->route('home');
