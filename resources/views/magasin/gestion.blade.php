@@ -94,53 +94,6 @@
                 </div>
             </div>
 
-            <div class="col-md-12" style="margin-top: 25px; margin-bottom: 50px;">
-            <h3 style="text-align: center;">Vos coiffeurs</h3>
-                <div class="col-md-8 col-md-offset-2 ">
-
-                    @forelse ( $coiffeurs as $coiffeur )
-                    <div class="col-md-3 un_coiffeur">
-                        <div class="col-md-12 ">
-                            <h4>{{$coiffeur->nom}}</h4>
-                            <li>Nom : @if ( !empty($coiffeur->nom)) {{$coiffeur->nom}} @else Indéfini @endif</li>
-                            <li>Sexe : @if ( !empty($coiffeur->sexe)) {{$coiffeur->sexe}} @else Indéfini @endif</li>
-                        </div>
-                    </div>
-                    @empty
-                        <p style="text-align: center;">Vous n'avez pas enregistrer de coiffeur</p>
-                    @endforelse
-                </div>
-                <div class="col-xs-4 col-xs-offset-4">
-                    <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn-block" href="{{route('coiffeur.create')}}">Ajouter un coiffeur</a>
-                </div>
-
-            </div>
-
-            <div class="col-md-12" style="margin-top: 25px; margin-bottom: 50px;">
-                <h3 style="text-align: center;">Vos services</h3>
-
-                <div class="col-md-8 col-md-offset-2 ">
-                    @forelse( $taches as $tache )
-                    <div class="col-md-3 un_coiffeur">
-                        <div class="col-md-12 ">
-                            <h4>{{$tache->nom}}</h4>
-                            <li>Prix : @if ( !empty($tache->prix)) {{$tache->prix}} € @else Indéfini @endif</li>
-                            <li>Durée : @if ( !empty($tache->coef_temps)) {{$tache->coef_temps * 30 }}min @else Temps Indéfini @endif</li>
-                            <br/>
-                            <p>Description : @if ( !empty($tache->desc)) {{$tache->desc }} @else  Indéfini @endif</p>
-                        </div>
-                    </div>
-                    @empty
-                        <p style="text-align: center;">Vous n'avez pas enregistrer de service</p>
-
-                    @endforelse
-                </div>
-                <div class="col-xs-4 col-xs-offset-4">
-                    <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn-block" href="{{route('tache.create')}}">Ajouter un service</a>
-                </div>
-
-            </div>
-
             <br/>
             <h3 style="text-align: center; margin-bottom: 45px; margin-top: 45px;">Horraire de la boutique</h3>
 
@@ -285,14 +238,10 @@
                 @endforelse
 
 
-
-
-
-
-
-
             </div>
-
+            <div class="col-xs-4 col-xs-offset-4">
+                <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn-block" href="{{route('coiffeur.create')}}">Ajouter un coiffeur</a>
+            </div>
 
         </div>
 
@@ -328,7 +277,9 @@
 
 
             </div>
-
+            <div class="col-xs-4 col-xs-offset-4">
+                <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn-block" href="{{route('tache.create')}}">Ajouter un service</a>
+            </div>
 
         </div>
 
