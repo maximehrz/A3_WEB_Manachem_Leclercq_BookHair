@@ -22,7 +22,7 @@ class RdvController extends Controller
      */
     public function index()
     {
-        //
+        return view('rdv.index');
     }
 
     /**

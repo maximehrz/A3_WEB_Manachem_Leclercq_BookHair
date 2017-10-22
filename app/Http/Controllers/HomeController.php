@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -26,10 +27,39 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
         $isGerant = Auth::user()->is_gerant;
+        $rdvs = 0;
+        $arraytaches = 0 ;
+
+        if ($isGerant == 1 ){
+
+            $id = Auth::user()->id;
+
+            $magasin = DB::table('magasins')
+                ->where('gerant_id', '=', $id)
+                ->first();
+
+            $rdvs = DB::table('rdvs')
+                ->where('magasin_id', '=', $magasin->id)
+                ->get();
+
+            $arraytaches = [];
+
+            foreach ( $rdvs as $rdv ){
+                $taches = DB::table('rdv-taches')
+                    ->where('rdv_id ', '=', $rdv->id)
+                    ->get();
+                array_push ( $arraytaches , $taches );
+            }
+        }
 
         return view('home', [
             'isGerant' => $isGerant,
+            'rdvs' => $rdvs,
+            'taches' => $arraytaches,
         ]);
+
+
     }
 }
