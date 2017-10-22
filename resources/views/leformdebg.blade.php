@@ -11,12 +11,12 @@
         <div id="ou" class="">
             <label for="">Où ?</label>
             <br>
-            <input type="text" name="ou" value="" placeholder="Ville, Code Postal, ...">
+            <input type="text" name="ou" value="" disabled="disabled" placeholder="Ville, Code Postal, ...">
         </div>
         <div id="quand" class="">
             <label for="">Quand ?</label>
             <br>
-            <input type="text" name="quand" value="" placeholder="Selectionner une date ...">
+            <input type="text" name="quand" value="" disabled="disabled"  placeholder="Selectionner une date ...">
         </div>
         <div id="btrecherche">
             <input type="submit" name="" value="Rechercher">
