@@ -7,7 +7,40 @@
         .col-md-8 .radio-inline {
             width: 275px;
         }
+
+        .position_absolute {
+            position: fixed;
+        z-index: 999;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        background-color: white;
+        -webkit-box-shadow: 0px 2px 19px -1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 2px 19px -1px rgba(0,0,0,0.75);
+        box-shadow: 0px 2px 19px -1px rgba(0,0,0,0.75);
+        }
+
+        .btn_fixed {
+            height: 40px!important;
+            margin-top: 5px!important;
+        }
+
+        form{
+            margin-bottom: 50px;
+        }
+
+        .panel-body {padding: 0}
+
+        .un_coiffeur {
+            border: 1px solid #c3c3c3;
+            height: 200px;
+            text-align: center;
+            box-sizing: border-box;
+            margin: 10px;
+        }
     </style>
+
+
 
     <div class="panel-body">
         <form class="form-horizontal" method="POST"  action="{{ route('magasin.store') }}">
@@ -98,6 +131,43 @@
                 </div>
             </div>
 
+            <div class="col-md-12" style="margin-top: 25px; margin-bottom: 50px;">
+            <h3 style="text-align: center;">Vos coiffeurs</h3>
+
+                <div class="col-md-8 col-md-offset-2 ">
+                    <div class="col-md-3 un_coiffeur">
+                        <div class="col-md-12 ">
+                            <h4>Nom du coiffeur</h4>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+            </div>
+
+            <div class="col-md-12" style="margin-top: 25px; margin-bottom: 50px;">
+                <h3 style="text-align: center;">Vos services</h3>
+
+                <div class="col-md-8 col-md-offset-2 ">
+                    <div class="col-md-3 un_coiffeur">
+                        <div class="col-md-12 ">
+                            <h4>Service</h4>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+            </div>
+
+            <br/>
             <h3 style="text-align: center; margin-bottom: 45px; margin-top: 45px;">Horraire de la boutique</h3>
             <hr/>
             <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
@@ -188,15 +258,15 @@
             </div>
 
             <hr/>
-
-
-
-
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        Sauvegarder votre boutique
-                    </button>
+            <div class="position_absolute">
+                <div class="form-group">
+                    <div class="col-md-2 col-md-offset-4">
+                        <button type="submit" class="btn btn-primary btn_fixed">
+                            Sauvegarder votre boutique
+                        </button>
+                    </div>
+                    <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn_fixed" href="#">Ajouter un coiffeur</a>
+                    <a style="color: white!important; background-color: #2579a9;" class="btn btn-primary btn_fixed" href="#">Ajouter un service</a>
                 </div>
             </div>
         </form>
