@@ -79,8 +79,17 @@ class MagasinController extends Controller
         $magasin = DB::table('magasins')
             ->where('gerant_id', '=', $id)
             ->first();
+        
+        $tache = DB::table('taches')
+            ->where('magasin_id', '=', $magasin->id)
+            ->get();
 
-        return view('magasin.gestion',['magasin'=>$magasin]);
+        $coiffeur = DB::table('coiffeurs')
+            ->where('magasin_id', '=', $magasin->id)
+            ->get();
+
+
+        return view('magasin.gestion',['magasin'=>$magasin,'coiffeurs'=>$coiffeur, 'taches'=>$tache] );
     }    
 
     /**
@@ -91,7 +100,7 @@ class MagasinController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -101,9 +110,47 @@ class MagasinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $idBoutique = session()->get('idMagasin');
+
+        $this->validate($request,
+            [
+                'nom'=>'required|string|max:255',
+                'tel'=>'required|max:10|min:10',
+                'adresse'=>'required',
+                'cp'=>'required',
+                'type'=>'required',
+
+            ]);
+
+        $lundi =0 ;
+        $mardi =0 ;
+        $mercredi =0 ;
+        $jeudi =0 ;
+        $vendredi =0 ;
+        $samedi =0 ;
+        $dimanche = 0;
+
+
+        $arrayHorraire = [ $lundi , $mardi , $mercredi , $jeudi , $vendredi , $samedi , $dimanche ];
+
+            DB::table('magasins')
+                ->where('id', $idBoutique)
+                ->update(array(
+                    'nom' => $request->name,
+                    'type'=> $request->type,
+                    'tel' => $request->tel,
+                    'adresse' => $request->adresse,
+                    'cp' => $request->cp,
+                    'logo' => 'default.png',
+                    'horraire' => $arrayHorraire));
+
+
+
+
+
+        return redirect(route('home'));
     }
 
     /**

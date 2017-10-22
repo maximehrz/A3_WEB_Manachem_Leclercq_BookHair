@@ -59,6 +59,8 @@
                 </div>
             </div>
 
+            <input type="hidden" name="id" value="{{$magasin->id}}" >
+
             <div class="form-group{{ $errors->has('tel') ? ' has-error' : '' }}">
                 <label for="email" class="col-md-4 control-label">Numéro de télèphone</label>
 
@@ -118,7 +120,7 @@
 
                 <div class="col-md-6">
 
-                    <label class="radio-inline"><input type="radio" name="type" value="mixte">Mixte</label>
+                    <label class="radio-inline"><input type="radio" checked name="type" value="mixte">Mixte</label>
                     <label class="radio-inline"><input type="radio" name="type" value="femme">Femme</label>
                     <label class="radio-inline"><input type="radio" name="type" value="homme">Homme</label>
 
@@ -135,11 +137,19 @@
             <h3 style="text-align: center;">Vos coiffeurs</h3>
 
                 <div class="col-md-8 col-md-offset-2 ">
+
+                    @forelse ( $coiffeurs as $coiffeur )
                     <div class="col-md-3 un_coiffeur">
                         <div class="col-md-12 ">
-                            <h4>Nom du coiffeur</h4>
+                            <h4>{{$coiffeur->nom}}</h4>
                         </div>
                     </div>
+                    @empty
+                        <p style="text-align: center;">Vous n'avez pas enregistrer de coiffeur</p>
+                    @endforelse
+
+
+
 
 
 
@@ -153,11 +163,18 @@
                 <h3 style="text-align: center;">Vos services</h3>
 
                 <div class="col-md-8 col-md-offset-2 ">
+                    @forelse( $taches as $tache )
                     <div class="col-md-3 un_coiffeur">
                         <div class="col-md-12 ">
-                            <h4>Service</h4>
+                            <h4>{{$tache->nom}}</h4>
                         </div>
                     </div>
+                    @empty
+                        <p style="text-align: center;">Vous n'avez pas enregistrer de service</p>
+
+                    @endforelse
+
+
 
 
 
