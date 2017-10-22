@@ -159,13 +159,13 @@ class MagasinController extends Controller
 
             ]);
 
-        $lundi = [$request->lundi_f , $request->lundi_m_o , $request->lundi_m_f , $request->lundi_a_o , $request->lundi_f_o ] ;
-        $mardi = [$request->mardi_f , $request->mardi_m_o , $request->mardi_m_f , $request->mardi_a_o , $request->mardi_f_o ] ;
-        $mercredi = [$request->mercredi_f , $request->mercredi_m_o , $request->mercredi_m_f , $request->mercredi_a_o , $request->mercredi_f_o ] ;
-        $jeudi = [ $request->jeudi_f ,$request->jeudi_m_o , $request->jeudi_m_f , $request->jeudi_a_o , $request->jeudi_f_o ] ;
-        $vendredi = [$request->vendredi_f , $request->vendredi_m_o , $request->vendredi_m_f , $request->vendredi_a_o , $request->vendredi_f_o ] ;
-        $samedi = [ $request->samedi_f ,$request->samedi_m_o , $request->samedi_m_f , $request->samedi_a_o , $request->samedi_f_o ] ;
-        $dimanche = [ $request->dimanche_f ,$request->dimanche_m_o , $request->dimanche_m_f , $request->dimanche_a_o , $request->dimanche_f_o ] ;
+        $lundi = [$request->lundi_f , $request->lundi_m_o , $request->lundi_m_f , $request->lundi_a_o , $request->lundi_a_f ] ;
+        $mardi = [$request->mardi_f , $request->mardi_m_o , $request->mardi_m_f , $request->mardi_a_o , $request->mardi_a_f ] ;
+        $mercredi = [$request->mercredi_f , $request->mercredi_m_o , $request->mercredi_m_f , $request->mercredi_a_o , $request->mercredi_a_f ] ;
+        $jeudi = [ $request->jeudi_f ,$request->jeudi_m_o , $request->jeudi_m_f , $request->jeudi_a_o , $request->jeudi_a_f ] ;
+        $vendredi = [$request->vendredi_f , $request->vendredi_m_o , $request->vendredi_m_f , $request->vendredi_a_o , $request->vendredi_a_f ] ;
+        $samedi = [ $request->samedi_f ,$request->samedi_m_o , $request->samedi_m_f , $request->samedi_a_o , $request->samedi_a_f ] ;
+        $dimanche = [ $request->dimanche_f ,$request->dimanche_m_o , $request->dimanche_m_f , $request->dimanche_a_o , $request->dimanche_a_f ] ;
 
 
         $arrayHorraire = [ $lundi , $mardi , $mercredi , $jeudi , $vendredi , $samedi , $dimanche ];

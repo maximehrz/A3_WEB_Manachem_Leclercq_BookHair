@@ -124,9 +124,9 @@
 
                 <div class="col-md-6">
 
-                    <label class="radio-inline"><input type="radio" checked name="type" value="0">Mixte</label>
-                    <label class="radio-inline"><input type="radio" name="type" value="1">Femme</label>
-                    <label class="radio-inline"><input type="radio" name="type" value="2">Homme</label>
+                    <label class="radio-inline"><input type="radio" @if ( $magasin->type_client == 0 ) checked @endif name="type" value="0">Mixte</label>
+                    <label class="radio-inline"><input type="radio"  @if ( $magasin->type_client == 1 )  checked @endif name="type"  value="1">Femme</label>
+                    <label class="radio-inline"><input type="radio"  @if ( $magasin->type_client == 2 )  checked @endif name="type" value="2">Homme</label>
 
 
                     @if ($errors->has('type'))

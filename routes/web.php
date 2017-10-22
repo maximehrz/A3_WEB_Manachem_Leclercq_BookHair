@@ -41,7 +41,10 @@ Route::get('gestion','MagasinController@gestion')->name('gestion.magasin');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/gerant/account','UserController@create_gerant')->name('create.gerant');
 
-Route::post('/magasin','MagasinController@update_table')->name('update.magasin');
+
 
 Route::resource('/tache', 'TacheController');
 
+Route::post('/magasin','MagasinController@store')->name('magasin.store');
+
+Route::post('/magasin/update','MagasinController@update_table')->name('update.magasin');
